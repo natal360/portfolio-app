@@ -1,0 +1,80 @@
+// HEADER
+.port-navbar.port-default {
+  width: 100%;
+  z-index: 15;
+  padding: 20px;
+  &.with-bg {
+    background-color: #1D2E45;
+    padding: 20px;
+  }
+
+  .port-navbar {
+
+    &-brand {
+      color: #b53d64bf;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+
+    &-item {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    &-link {
+      color: white;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-shadow:1px 1px 0 rgb(0, 0, 0),-1px 1px 0 rgb(0, 0, 0),1px -1px 0 rgb(0, 0, 0),-1px -1px 0 rgb(0, 0, 0);
+
+
+      &.active {
+      color: #6aef86e8;
+      }
+
+      &:hover, &:focus {
+        color: #6aef86e8;
+      }
+    }
+  }
+
+  
+
+  .port-dropdown-menu {
+    .dropdown-item:active {
+      background-color: #ff075c7a;
+    }
+
+    .port-dropdown-item {
+      color: rgba(0, 0, 0, 0.37);
+      text-shadow:0px 0px 0;
+  
+      &.active {
+        color: #6aef86e8;
+      }
+    }
+  
+    .port-dropdown-toggle {
+      color: white;
+      margin-left: 10px;
+      margin-right: 10px;
+      text-shadow:1px 1px 0 rgb(0, 0, 0),-1px 1px 0 rgb(0, 0, 0),1px -1px 0 rgb(0, 0, 0),-1px -1px 0 rgb(0, 0, 0);
+    }
+  }
+}
+
+.port-navbar.transparent.is-open{
+  background-color: #1D2E45;
+}
+
+.port-navbar.transparent.is-close{
+  transition: 1s;
+}
+
+.port-navbar.navbar-expand-md {
+  flex-wrap: wrap;
+}

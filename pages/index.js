@@ -1,65 +1,121 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useEffect, useRef, useState } from 'react';
+import BaseLayout from '@/components/layouts/BaseLayout';
+import BasePage from "@/components/BasePage";
+import { Container, Row, Col } from 'reactstrap';
+import Typed from "react-typed";
+import { useGetUser } from "@/actions/user";
 
-export default function Home() {
+
+// Typed 表示文字
+const roles = ["ASP.NET Core", "React.js", "Vue.js", "Angular", "Flutter"]
+const Index = () => {
+  const [isFlipping, setIsFlipping] = useState(false);
+  const changeCover = () => setIsFlipping(!isFlipping);
+  const { data, loading } = useGetUser();
+  // const flipInterval = useRef();
+
+  // useEffect(() => {
+  //   startAnimation();
+  //   return () => flipInterval.current && clearInterval(flipInterval.current);
+  // }, []);
+
+
+  // const startAnimation = () => {
+  //   flipInterval.current = setInterval(() => {
+  //     setIsFlipping(prevFlipping => !prevFlipping);
+  //   }, 20000);
+  // }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <BaseLayout
+      user={data}
+      loading={loading}
+      navClass="transparent"
+      className={`cover ${isFlipping ? "cover-orange" : "cover-blue"}`}>
+      <BasePage indexPage title="ポートフォリオ Next.js">
+        <div className="main-section">
+          <div className="background-image">
+            <img className="rotate-img" src="/images/background-index.png" />
+          </div>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+          <Container>
+            <Row>
+              <Col md="6">
+                <div className="hero-section">
+                  <div className={`flipper ${isFlipping ? "isFlipping" : ""}`}>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+                    <div className="front">
+                      <div
+                        onClick={changeCover}
+                        className="hero-section-content-image mt-4 ml-1 image image-1"
+                      >
+                        <div className="hero-section-content text-center">
+                          <h2 className="hero-section-content-title"> Full Stack Web Developer </h2>
+                          <div className="hero-section-content-intro">
+                            Have a look at my portfolio.
+                        </div>
+                        </div>
+                      </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                      <div className="shadow-custom">
+                        <div className="shadow-inner"> </div>
+                      </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+                    </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+                    <div className="back">
+
+                      <div
+                        onClick={changeCover}
+                        className="hero-section-content-image mt-4 ml-1 image image-2"
+                      >
+                        <div className="hero-section-content text-center">
+                          <h2 className="hero-section-content-title"> Powered by Next.js </h2>
+                          <div className="hero-section-content-intro">
+                            Software developer
+                    </div>
+                        </div>
+                      </div>
+                      <div className="shadow-custom">
+                        <div className="shadow-inner"> </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </Col>
+              <Col md="6" className="hero-welcome-wrapper">
+                <div className="hero-welcome-text">
+                  <h1>
+                    Welcome to the portfolio website.
+                    We will update it from time to time, so please visit regularly. We plan to update mainly on the following technologies
+                </h1>
+                </div>
+                <Typed
+                  loop
+                  typeSpeed={70}
+                  backSpeed={70}
+                  strings={roles}
+                  backDelay={1000}
+                  loopCount={0}
+                  showCursor
+                  className="self-typed"
+                  cursorChar="|"
+                />
+                <div className="hero-welcome-bio">
+                  <h1>
+                    Let's take a look on my work.
+                </h1>
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      </BasePage>
+    </BaseLayout>
   )
 }
+
+export default Index;
